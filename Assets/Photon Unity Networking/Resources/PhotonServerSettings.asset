@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppID: 
   VoiceAppID: 
-  ChatAppID: 
-  HostType: 0
+  ChatAppID: 172.18.1.250
+  HostType: 2
   PreferredRegion: 0
   EnabledRegions: -1
   Protocol: 0
@@ -26,5 +26,18 @@ MonoBehaviour:
   PunLogging: 0
   NetworkLogging: 1
   RunInBackground: 1
-  RpcList: []
-  DisableAutoOpenWizard: 0
+  RpcList:
+  - Chat
+  - DestroyByCollision
+  - DestroyByHit
+  - DestroyRpc
+  - ForceUpdateItem
+  - InstantiateRpc
+  - PickupItemInit
+  - PlayShotSound
+  - PunPickup
+  - PunPickupSimple
+  - PunRespawn
+  - RequestForPickupItems
+  - RequestForPickupTimes
+  DisableAutoOpenWizard: 1
