@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppID: 
   VoiceAppID: 
-  ChatAppID: 172.18.1.250
+  ChatAppID: 192.168.2.201
   HostType: 2
   PreferredRegion: 0
   EnabledRegions: -1
