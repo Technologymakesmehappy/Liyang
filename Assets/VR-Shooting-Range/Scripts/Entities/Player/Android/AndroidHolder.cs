@@ -47,9 +47,9 @@ namespace ExitGames.SportShooting
             }
             else
             {
-                
                 RigidBodyId = UserID.id * 2 + 1;
             }
+            //RigidBodyId = UserID.id * 2 + 1;
         }
     }
 }

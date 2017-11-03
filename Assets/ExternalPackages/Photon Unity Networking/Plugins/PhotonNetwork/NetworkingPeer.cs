@@ -1988,7 +1988,6 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     {
         if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
             Debug.Log(string.Format("OnStatusChanged: {0} current State: {1}", statusCode.ToString(), this.State));
-
         switch (statusCode)
         {
             case StatusCode.Connect:
@@ -3171,7 +3170,6 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
             {
                 throw new Exception("Error in Instantiation! The resource's PhotonView count is not the same as in incoming data.");
             }
-
             for (int i = 0; i < viewsIDs.Length; i++)
             {
                 // NOTE instantiating the loaded resource will keep the viewID but would not copy instantiation data, so it's set below

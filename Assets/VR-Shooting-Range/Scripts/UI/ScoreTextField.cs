@@ -20,7 +20,6 @@ public class ScoreTextField : MonoBehaviour
             _textField.text = string.Format("AUAUAUA! {0}", value);
             _textField.color = Color.red;
         }
-
         _newRotation = Camera.main.transform.rotation;
         _newRotation.z = transform.rotation.z;
 

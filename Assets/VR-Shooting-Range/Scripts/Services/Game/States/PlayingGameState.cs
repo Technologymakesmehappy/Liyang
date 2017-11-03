@@ -68,7 +68,6 @@ namespace ExitGames.SportShooting
         {
             PhotonPlayer[] players = PhotonNetwork.playerList;
             string playerName = playerID.ToString();
-
             for (int i = 0; i < players.Length; i++)
             {
                 if (players[i].ID == playerID)
@@ -77,7 +76,7 @@ namespace ExitGames.SportShooting
                     break;
                 }
             }
-
+            Debug.Log(string.Format("playerName:{0},playerID:{1},maskerId:{2}", playerName, playerID.ToString(), PhotonNetwork.masterClient.ID.ToString()));
             GameView.Instance.ShowStatusPopupPanel("Player: '" + playerName + "' have hit the trap");
         }
     }

@@ -112,7 +112,7 @@ public class ServerSettings : ScriptableObject
     public PhotonLogLevel PunLogging = PhotonLogLevel.ErrorsOnly;
     public DebugLevel NetworkLogging = DebugLevel.ERROR;
 
-	public bool RunInBackground = true;
+    public bool RunInBackground = true;
 
     public List<string> RpcList = new List<string>();   // set by scripts and or via Inspector
 

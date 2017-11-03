@@ -36,6 +36,7 @@ namespace ExitGames.SportShooting
 
         protected void ClickOnHitObject()
         {
+
             if (Physics.Raycast(transform.position, transform.forward, out _hitInfo, _maxRayDistance, _hitLayer))
             {
                 Button button = _hitInfo.collider.GetComponent<Button>();

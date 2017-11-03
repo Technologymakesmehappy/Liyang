@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppID: 
   VoiceAppID: 
-  ChatAppID: 192.168.2.201
+  ChatAppID: 
   HostType: 2
   PreferredRegion: 0
   EnabledRegions: -1
   Protocol: 0
-  ServerAddress: 
+  ServerAddress: 192.168.199.195
   ServerPort: 5055
   VoiceServerPort: 5055
   JoinLobby: 0

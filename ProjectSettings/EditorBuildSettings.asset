@@ -7,3 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/VR-Shooting-Range/Scenes/DemoVrShootingRange-Scene.unity
+    guid: 0b9dcf73de5a38745bc83e5f34ab4c36
+  - enabled: 0
+    path: Assets/xxxxxx.unity
+    guid: f6d1876d151c834469a98436d80f185f

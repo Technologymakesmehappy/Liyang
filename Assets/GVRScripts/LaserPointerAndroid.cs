@@ -6,7 +6,6 @@ namespace ExitGames.SportShooting
 {
     public class LaserPointerAndroid : LaserPointer
     {
-
         protected override void Update()
         {
             base.Update();

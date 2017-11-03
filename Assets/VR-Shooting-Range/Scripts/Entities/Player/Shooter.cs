@@ -40,8 +40,9 @@ namespace ExitGames.SportShooting
             _gunFire.SetActive(false);
             _synchronizer.ForceUpdate();
             _bulletTrace.enabled = true;
-            
+
             //Check if we've hit the target
+            
             if (Physics.Raycast(_tip.position, _tip.forward, out _hitInfo, _maxBulletDistance, _hitLayer))
             {
                 _bulletTrace.SetPosition(0, _tip.position);
@@ -74,7 +75,6 @@ namespace ExitGames.SportShooting
                 _bulletTrace.SetPosition(0, _tip.position);
                 _bulletTrace.SetPosition(1, _tip.position + _tip.forward * _maxBulletDistance);
             }
-
             _gunFire.SetActive(true);
             _photonView.RPC("PlayShotSound", PhotonTargets.All);
             _synchronizer.ForceUpdate();

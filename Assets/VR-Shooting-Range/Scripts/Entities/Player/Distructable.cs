@@ -21,7 +21,7 @@ namespace ExitGames.SportShooting
         bool _distructableByHit = true;
 
         private bool _isHitted = false;
-        
+
         void OnCollisionEnter(Collision col)
         {
             photonView.RPC("DestroyByCollision", PhotonTargets.All);

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class UserID
 {
-    public static int id = 0;
+    public static int id = 1;
    
 }
