@@ -658,6 +658,14 @@ public class SystemManager : MonoBehaviour {
 	
 	void Start()
 	{
+
+            //由於将分数的面板改到预制物体上面，改为全局查找 就这样找，这样快
+            fenshu = GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.GetComponent<Text>();
+            Tip = GameObject.Find("CanvasFenshuManage").transform.FindChild("Tip").gameObject.GetComponent<Image>();
+            TipTwo = GameObject.Find("CanvasFenshuManage").transform.FindChild("TipTwo").gameObject.GetComponent<Image>();
+            TipThree = GameObject.Find("CanvasFenshuManage").transform.FindChild("TipThree").gameObject.GetComponent<Image>();
+
+
 #if UNITY_5_3
 		VRManager.instance.SetupHMDDevice(); // more graceful
 		// VRManager.instance.BeginVRSetup();	 // than this
@@ -817,6 +825,7 @@ public class SystemManager : MonoBehaviour {
 			dragon_tail_pool_[i].SetActive(false);
 		}
 		for (var i = shutter_idx; i < SHUTTER_MAX; ++i) {
+              
 			shutter_pool_[i].SetActive(false);
 		}
 
@@ -1042,10 +1051,14 @@ public class SystemManager : MonoBehaviour {
         [HideInInspector]
         public int NowBloodVolume=1;//当前血量
         public bool IsGameOver = false;
+        [HideInInspector]
         public Text fenshu;
         public Image Image;
+        [HideInInspector]
         public Image Tip;
+        [HideInInspector]
         public Image TipTwo;
+        [HideInInspector]
         public Image TipThree;
 
         [HideInInspector]
@@ -1076,7 +1089,10 @@ public class SystemManager : MonoBehaviour {
                 if (BecomeBlackTime>=2f)
                 { 
                     CameraBackage.gameObject.SetActive(true);
-                    GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(false);
+                    //Temp 
+                    //GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(false);
+                    GameObject.Find("player 1(Clone)").transform.FindChild("cockpit-07_Prefab").gameObject.SetActive(false);
+                    GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(false);
                     debrisRenderer.SetActive(false);
                     
                     StartCoroutine(WaitBack());
@@ -1158,7 +1174,8 @@ public class SystemManager : MonoBehaviour {
         {
             yield return new WaitForSeconds(5f);
             CameraBackage.gameObject.SetActive(false);
-            GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(true);
+            GameObject.Find("player 1(Clone)").transform.FindChild("cockpit-07_Prefab").gameObject.SetActive(true);
+            GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(true);
             debrisRenderer.SetActive(true);
         }
 

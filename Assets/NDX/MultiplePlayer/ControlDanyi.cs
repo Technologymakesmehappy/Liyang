@@ -53,7 +53,7 @@ public class ControlDanyi:MonoBehaviour  {
                 X = ((m_pHand.localRotation * Vector3.forward).y) * 80;
                 Y = ((m_pHand.localRotation * Vector3.forward).x) * 80;
                 Z = ((m_pHand.localRotation ).z) * 80;
-                 print(string.Format("X:{0},Y:{1},Z:{2}", X, Y, Z));
+                 //print(string.Format("X:{0},Y:{1},Z:{2}", X, Y, Z));
           
                 SendMotion(Z+ X,-Z+X , Y);
             }

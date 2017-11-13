@@ -1225,7 +1225,7 @@ MonoBehaviour:
   BloodVolume: 200
   NowBloodVolume: 1
   IsGameOver: 0
-  fenshu: {fileID: 3373315}
+  fenshu: {fileID: 0}
   Image: {fileID: 512233407}
   Tip: {fileID: 793899258}
   TipTwo: {fileID: 550771883}
