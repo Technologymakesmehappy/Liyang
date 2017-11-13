@@ -129,6 +129,8 @@ public class Beam
 
 	public int spawn(float width, Type type)
 	{
+
+           
 		int cnt = 0;
 		while (alive_table_[spawn_index_]) {
 			++spawn_index_;

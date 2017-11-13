@@ -16,6 +16,6 @@ public class ExplosionRenderer : MonoBehaviour {
 		mf_.sharedMesh = Explosion.Instance.getMesh();
 		mr_.sharedMaterial = Explosion.Instance.getMaterial();
 	}
-}
+ }
 
 } // namespace UTJ {

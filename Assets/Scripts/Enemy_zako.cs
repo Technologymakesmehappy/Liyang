@@ -68,6 +68,7 @@ public partial class Enemy : Task
 								 MyRandom.Range(-100f, 100f));
 			rigidbody_.addForceZ(-10000f);
 			life_ -= 100f;
+                
 		}
 		if (life_ <= 0f && phase_ == Phase.Alive) {
 			Explosion.Instance.spawn(ref lock_target_.updated_position_, update_time_);
@@ -76,7 +77,8 @@ public partial class Enemy : Task
 			MyCollider.disableForEnemy(collider_);
 			lock_target_.disable();
 			phase_ = Phase.Dying;
-		}
+                
+            }
 		
 		rigidbody_.update(dt);
 		MyCollider.updateEnemy(collider_, ref rigidbody_.transform_.position_);

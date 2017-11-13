@@ -96,9 +96,20 @@ public class Explosion
 		material_.SetFloat(material_FlowZ, flow_speed);
 	}
 
+
+
+        public int PlayerAttackEnemyNumber=0;
 	public void spawn(ref Vector3 pos, double update_time)
 	{
-		int id = spawn_index_;
+            Debug.Log("調用了爆炸效果");
+            //当调用爆炸效果时，敌机被打爆
+            //在这里写分数的逻辑
+            //优化敌机声音的效果
+            PlayerAttackEnemyNumber += 1;  //得分计数
+
+            //敌机爆炸声音播放
+
+        int id = spawn_index_;
 		++spawn_index_;
 		if (spawn_index_ >= EXPLOSION_MAX) {
 			spawn_index_ = 0;

@@ -34,6 +34,11 @@ public class Player
 	private Vector3 r_trail_locator_ = new Vector3( 0.4f, 0f, -1f);
 	private float arm_offset_;
 
+
+
+        //开火控制
+        public bool CanFire = false;
+
 	private enum Phase {
 		Title,
 		Start,
@@ -208,7 +213,9 @@ public class Player
 		prev_fire_button_ = fire_button_;
 
 		// fire bullets
-		if (fire_button_) {
+		if (fire_button_|| CanFire) {
+                //玩家可以开火
+                Debug.Log("按下开火键");
 			if (can_fire_time_ - update_time > 0f && update_time - fire_time_ > 0f) {
 				var lpos = rigidbody_.transform_.transformPosition(ref l_bullet_locator_);
 				Bullet.create(ref lpos, ref rigidbody_.transform_.rotation_, 120f /* speed */, update_time);

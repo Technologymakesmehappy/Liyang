@@ -48,7 +48,8 @@ public class BeamTest : MonoBehaviour {
 					pool_[pool_idx_].velocity_ = Random.onUnitSphere * 8f;
 					pool_[pool_idx_].velocity_.y = Mathf.Abs(pool_[pool_idx_].velocity_.y);
 					pool_[pool_idx_].id_ = Beam.Instance.spawn(1f /* width */, Beam.Type.Bullet);
-					pool_[pool_idx_].cnt_ = 100;
+                        Debug.Log("发射子弹4");
+                        pool_[pool_idx_].cnt_ = 100;
 				}
 			}
 

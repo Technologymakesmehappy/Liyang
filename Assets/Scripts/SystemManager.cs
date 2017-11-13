@@ -666,6 +666,8 @@ public class SystemManager : MonoBehaviour {
             TipThree = GameObject.Find("CanvasFenshuManage").transform.FindChild("TipThree").gameObject.GetComponent<Image>();
 
 
+            Score = GameObject.Find("CanvasFenshuManage").transform.FindChild("Score").gameObject.GetComponent<Text>();
+
 #if UNITY_5_3
 		VRManager.instance.SetupHMDDevice(); // more graceful
 		// VRManager.instance.BeginVRSetup();	 // than this
@@ -720,6 +722,18 @@ public class SystemManager : MonoBehaviour {
         public bool IsBeganDanyi = false;
 	private void input_update()
 	{
+
+            #region 玩家开火控制
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Player.Instance.CanFire = true;
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                Player.Instance.CanFire = false;
+            }
+#endregion
+
 
             if (GameManager.Instance.IsEnd)
             {
@@ -1050,6 +1064,8 @@ public class SystemManager : MonoBehaviour {
         public float  BloodVolume = 200f;//总血量
         [HideInInspector]
         public int NowBloodVolume=1;//当前血量
+        [HideInInspector]
+        public int ScoreNumber = 0;//当前分数
         public bool IsGameOver = false;
         [HideInInspector]
         public Text fenshu;
@@ -1069,6 +1085,9 @@ public class SystemManager : MonoBehaviour {
         public float timeTipBegan = 2f;
         [HideInInspector]
         public bool IsBeganShowTipTwo = false;
+
+        [HideInInspector]
+        public Text Score;//玩家得分
 
 
         public GameObject CameraBackage;
@@ -1092,7 +1111,9 @@ public class SystemManager : MonoBehaviour {
                     //Temp 
                     //GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(false);
                     GameObject.Find("player 1(Clone)").transform.FindChild("cockpit-07_Prefab").gameObject.SetActive(false);
-                    GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(false);
+                    GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(false);//隐藏血量
+
+                    GameObject.Find("CanvasFenshuManage").transform.FindChild("Score").gameObject.SetActive(false);//隐藏分数
                     debrisRenderer.SetActive(false);
                     
                     StartCoroutine(WaitBack());
@@ -1143,8 +1164,11 @@ public class SystemManager : MonoBehaviour {
                     print(NowBloodVolume + "________________NowBloodVolume");
                 }
             }
+            //血量分数显示
+            fenshu.text = "剩余能量：" + NowBloodVolume.ToString();
             //分数显示
-            fenshu.text = "能量：" + NowBloodVolume.ToString();
+            Score.text =  "当前得分：" + Explosion.Instance.PlayerAttackEnemyNumber.ToString();
+
             #endregion
             #region 游戏结束逻辑
             if (IsGameOver)
@@ -1175,7 +1199,8 @@ public class SystemManager : MonoBehaviour {
             yield return new WaitForSeconds(5f);
             CameraBackage.gameObject.SetActive(false);
             GameObject.Find("player 1(Clone)").transform.FindChild("cockpit-07_Prefab").gameObject.SetActive(true);
-            GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(true);
+            GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(true);//显示血量
+            GameObject.Find("CanvasFenshuManage").transform.FindChild("Score").gameObject.SetActive(true);//显示分数
             debrisRenderer.SetActive(true);
         }
 

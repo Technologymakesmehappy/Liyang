@@ -48,7 +48,7 @@ public class GameManager
 	public void restart()
 	{
             Debug.Log("重新开始");
-
+            //重置各种条件
             SystemManager.Instance.BecomeBlackTime = 0;
 
             SystemManager.Instance.time = 0;
@@ -61,6 +61,10 @@ public class GameManager
 
             GameManager.Instance.IsEnd = false;
             GameManager.instance_.CameraBackageBecomeBlack = false;
+
+            //重置血量
+            Explosion.Instance.PlayerAttackEnemyNumber = 0;
+            
 
         SystemManager.Instance.IsBeganDanyi = false;
             replay_manager_.stopRecording();

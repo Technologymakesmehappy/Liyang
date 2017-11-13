@@ -53,7 +53,13 @@ public class Bullet : Task
 		MyCollider.initSphereBullet(collider_, ref position, 0.5f /* radius */);
 		start_ = update_time;
 		beam_id_ = Beam.Instance.spawn(0.75f /* width */, Beam.Type.Bullet);
-	}
+
+
+            //玩家发射子弹的地方
+
+           
+            Debug.Log("玩家发射子弹");
+        }
 
 	public override void destroy()
 	{
