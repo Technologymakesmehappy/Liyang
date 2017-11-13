@@ -134,6 +134,7 @@ public class MySprite {
 
 	public void end(int front)
 	{
+            
 		for (var i = index_*4; i < vertices_[front].Length; ++i) {
 			vertices_[front][i] = new Vector3(0f, 0f, -1f);
 		}
@@ -146,7 +147,8 @@ public class MySprite {
 		float h = size_list_[idx].y;
 		var rect = new Rect(x, y, w*ratio, h*ratio);
 		put(front, ref rect, kind, type);
-	}
+           
+        }
 	public void put(int front, ref Rect rect, Kind kind, Type type)
 	{
 		if (index_ >= RECT_MAX) {

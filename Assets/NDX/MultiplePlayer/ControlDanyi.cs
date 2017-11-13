@@ -7,6 +7,7 @@ public class ControlDanyi:MonoBehaviour  {
 
     private float X;
     private float Y;
+    private float Z;
     private float ShootForce = 0;
     private float CurrentX;
     private float ResDanyiPosSpeed = 0.3f;
@@ -31,21 +32,30 @@ public class ControlDanyi:MonoBehaviour  {
         if (!m_pHand)
             Debug.LogError("没有头部");
     }
+    //private bool IsBegan = false;
     void LateUpdate()
     {
+        //if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3)))
+        //{
+        //    IsBegan = true;
+        //} 
         if (m_pHand&&!isQuit)
         {
             if (IsShoot)
             {
-                this.SendMotion(X + ShootForce, Y, -Y);
+
+                this.SendMotion(-Z + X + ShootForce, Z + X+ ShootForce, Y);
 
                 ShootForce += (0 - ShootForce) / 10f;
             }
             else
             {
-                X = ((m_pHand.localRotation * Vector3.forward).y) * 60;
-                Y = ((m_pHand.localRotation * Vector3.forward).x) * 60;
-                SendMotion(X, Y, -Y);
+                X = ((m_pHand.localRotation * Vector3.forward).y) * 80;
+                Y = ((m_pHand.localRotation * Vector3.forward).x) * 80;
+                Z = ((m_pHand.localRotation ).z) * 80;
+                 print(string.Format("X:{0},Y:{1},Z:{2}", X, Y, Z));
+          
+                SendMotion(Z+ X,-Z+X , Y);
             }
 
         }
@@ -61,15 +71,20 @@ public class ControlDanyi:MonoBehaviour  {
 
 
     }
+
+    void SendMotion() { SendMotion(-Z + X, Z + X, Y); }
+    
+       
+    
     public void SendMotion(float x, float y, float z)
     {
         //说明位置未变
         if ((x == currentPos.x) && (y == currentPos.y) && (z == currentPos.z))
             return;
 
-        x = Mathf.Clamp(x, -70, 70);
-        y = Mathf.Clamp(y, -60, 60);
-        z = Mathf.Clamp(z, -60, 60);
+        x = Mathf.Clamp(x, -30, 80);
+        y = Mathf.Clamp(y, -80, 80);
+        z = Mathf.Clamp(z, -95, 95);
 
 
         int result = Svc.SendMotionPercent(x, y, z);
@@ -134,14 +149,31 @@ public class ControlDanyi:MonoBehaviour  {
                 Y = 0;
         }
 
-        SendMotion(X, Y, -Y);
 
-          
-        
-        if(X==0&&Y==0)
+        if (Z > 0)
+        {
+            Z -= ResDanyiPosSpeed;
+            if (Z < 0)
+                Z = 0;
+
+        }
+        else if (Z < 0)
+        {
+            Z += ResDanyiPosSpeed;
+            if (Z > 0)
+                Z = 0;
+        }
+        SendMotion();
+
+
+
+
+        if (X==0&&Y==0&&Z==0)
         StartCoroutine(  Close());
     }
 
+
+  
     /// <summary>
     /// 复位结束后调用
     /// </summary>

@@ -67,7 +67,8 @@ public class Bullet : Task
 	{
 		if (MyCollider.getHitOpponentForBullet(collider_) != MyCollider.Type.None) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.Bullet, update_time);
-			destroy();
+                
+                destroy();
 			return;
 		}
 
@@ -77,7 +78,8 @@ public class Bullet : Task
 		if (TubeScroller.Instance.checkIntersectionWithSphere(ref rigidbody_.transform_.position_,
 															  0.5f /* radius */)) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.Bullet, update_time);
-			destroy();
+                
+                destroy();
 			return;
 		}
 

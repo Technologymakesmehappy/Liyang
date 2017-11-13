@@ -21,15 +21,15 @@ public class MySpriteRenderer : MonoBehaviour {
 
 	public void init(Camera camera)
 	{
-		mf_ = GetComponent<MeshFilter>();
-		mr_ = GetComponent<MeshRenderer>();
-		mr_.enabled = false;
-		mf_.sharedMesh = MySprite.Instance.getMesh();
-		mr_.sharedMaterial = MySprite.Instance.getMaterial();
-		mr_.SetPropertyBlock(MySprite.Instance.getMaterialPropertyBlock());
-		command_buffer_ = new UnityEngine.Rendering.CommandBuffer();
-		command_buffer_.DrawRenderer(mr_, MySprite.Instance.getMaterial());
-		camera.AddCommandBuffer(UnityEngine.Rendering.CameraEvent.AfterImageEffects, command_buffer_);
+		//mf_ = GetComponent<MeshFilter>();
+		//mr_ = GetComponent<MeshRenderer>();
+		//mr_.enabled = false;
+		//mf_.sharedMesh = MySprite.Instance.getMesh();
+		//mr_.sharedMaterial = MySprite.Instance.getMaterial();
+		//mr_.SetPropertyBlock(MySprite.Instance.getMaterialPropertyBlock());
+		//command_buffer_ = new UnityEngine.Rendering.CommandBuffer();
+		//command_buffer_.DrawRenderer(mr_, MySprite.Instance.getMaterial());
+		//camera.AddCommandBuffer(UnityEngine.Rendering.CameraEvent.AfterImageEffects, command_buffer_);
 	}
 }
 

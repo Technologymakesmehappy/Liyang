@@ -5,7 +5,8 @@ using System.Collections;
 namespace UTJ {
 
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
-public class SightRenderer : MonoBehaviour {
+public class SightRenderer : MonoBehaviour
+    {
 	// singleton
 	static SightRenderer instance_;
 	public static SightRenderer Instance { get { return instance_; } }
@@ -30,6 +31,6 @@ public class SightRenderer : MonoBehaviour {
 		command_buffer_.DrawRenderer(mr_, Sight.Instance.getMaterial());
 		camera.AddCommandBuffer(UnityEngine.Rendering.CameraEvent.AfterImageEffects, command_buffer_);
 	}
-}
+    }
 
 } // namespace UTJ {

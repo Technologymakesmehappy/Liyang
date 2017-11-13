@@ -27,10 +27,10 @@ public class TubeScroller : MonoBehaviour
 		Type4,
 		Type5,
 		Type6,
-
-		None,
+            Type7,
+            None,
 	}
-	const int NUM = 52;
+	const int NUM = 53;
 	private TubeType[] pattern_tube_list_ = new TubeType[NUM] {
 		TubeType.Type1,
 		TubeType.Type1,
@@ -90,7 +90,8 @@ public class TubeScroller : MonoBehaviour
 		TubeType.Type1,
 		TubeType.Type1,
 		TubeType.Type1,
-	};
+		TubeType.Type7,
+    };
 
 	public GameObject title_prefab_;
 	public GameObject[] tube_prefabs_;
@@ -127,7 +128,10 @@ public class TubeScroller : MonoBehaviour
 				if (title_prefab_) {
 					var go = Instantiate(title_prefab_) as GameObject;
 					go.transform.SetParent(tube_list_[i].transform);
-				}
+                        //Temp測試
+                        go.transform.localPosition = new Vector3(3.68f, -20.96f, 75.72f);
+                        go.transform.localRotation  = new Quaternion(90,0,0,90);
+                    }
 			}
 			original_position_list_[i] = pos;
 			switch (pattern_tube) {

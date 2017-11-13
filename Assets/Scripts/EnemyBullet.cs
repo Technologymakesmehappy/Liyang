@@ -9,6 +9,10 @@ public class EnemyBullet : Task
 	private static EnemyBullet[] pool_;
 	private static int pool_index_;
 
+
+
+        public static int AttackNumber = 0;
+
 	public static void createPool()
 	{
 		pool_ = new EnemyBullet[POOL_MAX];
@@ -102,7 +106,10 @@ public class EnemyBullet : Task
 	{
 		if (MyCollider.getHitOpponentForEnemyBullet(collider_) != MyCollider.Type.None) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.EnemyBullet, update_time);
-			destroy();
+                Debug.Log("攻击到我了1");
+                //Temp 玩家被敌人攻击到了，攻击次数
+                AttackNumber++;
+                destroy();
 			return;
 		}
 
@@ -112,7 +119,8 @@ public class EnemyBullet : Task
 		if (TubeScroller.Instance.checkIntersectionWithSphere(ref rigidbody_.transform_.position_,
 															  0.5f /* radius */)) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.EnemyBullet, update_time);
-			destroy();
+                Debug.Log("攻击到我了2");
+                destroy();
 			return;
 		}
 

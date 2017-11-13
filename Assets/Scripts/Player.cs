@@ -146,6 +146,8 @@ public class Player
 		bool success = replay_manager_.getFrameData(update_time, ref transform, ref fire_button_);
 		if (!success) {
 			SystemManager.Instance.restart();
+
+
 		}
 		rigidbody_.transform_ = transform;
 		update_attack(update_time, true /* replay */);

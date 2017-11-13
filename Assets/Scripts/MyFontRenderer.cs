@@ -21,15 +21,15 @@ public class MyFontRenderer : MonoBehaviour {
 
 	public void init(Camera camera)
 	{
-		mf_ = GetComponent<MeshFilter>();
-		mr_ = GetComponent<MeshRenderer>();
-		mr_.enabled = false;
-		mf_.sharedMesh = MyFont.Instance.getMesh();
-		mr_.sharedMaterial = MyFont.Instance.getMaterial();
-		mr_.SetPropertyBlock(MyFont.Instance.getMaterialPropertyBlock());
-		command_buffer_ = new UnityEngine.Rendering.CommandBuffer();
-		command_buffer_.DrawRenderer(mr_, MyFont.Instance.getMaterial());
-		camera.AddCommandBuffer(UnityEngine.Rendering.CameraEvent.AfterImageEffects, command_buffer_);
+		//mf_ = GetComponent<MeshFilter>();
+		//mr_ = GetComponent<MeshRenderer>();
+		//mr_.enabled = false;
+		//mf_.sharedMesh = MyFont.Instance.getMesh();
+		//mr_.sharedMaterial = MyFont.Instance.getMaterial();
+		//mr_.SetPropertyBlock(MyFont.Instance.getMaterialPropertyBlock());
+		//command_buffer_ = new UnityEngine.Rendering.CommandBuffer();
+		//command_buffer_.DrawRenderer(mr_, MyFont.Instance.getMaterial());
+		//camera.AddCommandBuffer(UnityEngine.Rendering.CameraEvent.AfterImageEffects, command_buffer_);
 	}
 }
 

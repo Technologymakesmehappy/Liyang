@@ -105,7 +105,8 @@ public class MyFont {
 
 	public void end(int front)
 	{
-		for (var i = index_*4; i < vertices_[front].Length; ++i) {
+		for (var i = index_*4; i < vertices_[front].Length; ++i)
+            {
 			vertices_[front][i] = new Vector3(0f, 0f, -1f);
 		}
 	}

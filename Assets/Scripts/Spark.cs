@@ -79,6 +79,7 @@ public class Spark
 		}
 
 		spawn_index_ = 0;
+           
 
 		// mesh setup
 		mesh_ = new Mesh();
@@ -119,6 +120,7 @@ public class Spark
 	
 	public void spawn(ref Vector3 pos, Type type, double update_time)
 	{
+
 		positions_[spawn_index_] = pos;
 		uv2_list_[spawn_index_] = new Vector2((float)update_time, (float)type);
 		++spawn_index_;

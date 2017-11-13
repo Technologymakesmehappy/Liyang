@@ -25,6 +25,7 @@ public class SparkTest : MonoBehaviour {
 			--cnt_;
 			if (cnt_ <= 0) {
 				Spark.Instance.spawn(ref pos, Spark.Type.Orange, Time.time);
+                    Debug.Log("攻击到我了");
 				cnt_ = 1;
 			}
 			Spark.Instance.end(0 /* front */);

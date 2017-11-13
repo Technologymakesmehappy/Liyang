@@ -8,6 +8,7 @@ public class GameManager
 {
 	// singleton
 	static GameManager instance_;
+        private bool IsBegan;
 	public static GameManager Instance { get { return instance_ ?? (instance_ = new GameManager()); } }
 
 	private enum GamePhase {
@@ -19,6 +20,11 @@ public class GameManager
 	private double update_time_;
 	private ReplayManager replay_manager_;
 	private bool replay_mode_ = false;
+
+        public bool IsEnd = false;
+
+
+        public bool CameraBackageBecomeBlack = false;
 
 	public void init()
 	{
@@ -41,7 +47,23 @@ public class GameManager
 
 	public void restart()
 	{
-		replay_manager_.stopRecording();
+            Debug.Log("重新开始");
+
+            SystemManager.Instance.BecomeBlackTime = 0;
+
+            SystemManager.Instance.time = 0;
+
+            SystemManager.Instance.IsTipShowTip = false;
+
+            SystemManager.Instance.timeTipBegan = 2f;
+
+            SystemManager.Instance.IsBeganShowTipTwo = false;
+
+            GameManager.Instance.IsEnd = false;
+            GameManager.instance_.CameraBackageBecomeBlack = false;
+
+        SystemManager.Instance.IsBeganDanyi = false;
+            replay_manager_.stopRecording();
 		replay_manager_.stopPlaying(Player.Instance);
 		enumerator_ = null;
 		enumerator_ = act();
@@ -70,7 +92,8 @@ public class GameManager
 			bool exit_title = false;
 			var elapsed_time = update_time_ - leave_time_start;
 			if (InputManager.Instance.getButton(InputManager.Button.Fire) > 0) {
-				exit_title = true;
+                    GameManager.instance_.IsEnd = false;
+                    exit_title = true;
 				replay_manager_.startRecording(update_time_);
 				replay_mode_ = false;
 			} else {
@@ -160,12 +183,14 @@ public class GameManager
 		for (var i = 0; i < 4; ++i) {
 			for (var v = new Utility.WaitForSeconds(3f, update_time_); !v.end(update_time_);) {
 				Enemy.create(Enemy.Type.Zako2);
+                    //Debug.Log("a");
 				for (var w = new Utility.WaitForSeconds(0.5f, update_time_); !w.end(update_time_);) { yield return null; }
 			}
-			for (var w = new Utility.WaitForSeconds(2f, update_time_); !w.end(update_time_);) {	yield return null; }
+                //Debug.Log("b");
+                for (var w = new Utility.WaitForSeconds(2f, update_time_); !w.end(update_time_);) {	yield return null; }
 		}
-
-		for (var w = new Utility.WaitForSeconds(2f, update_time_); !w.end(update_time_);) {	yield return null; }
+            //Debug.Log("c");
+            for (var w = new Utility.WaitForSeconds(2f, update_time_); !w.end(update_time_);) {	yield return null; }
 		dragon.setMode(Dragon.Mode.Farewell);
 		for (var i = 0; i < 16; ++i) {
 			float rot = 30f * i;
@@ -174,20 +199,40 @@ public class GameManager
 			for (var w = new Utility.WaitForSeconds(1f, update_time_); !w.end(update_time_);) {	yield return null; }
 		}
 		while (TubeScroller.Instance.getDistance() < 9400f) {
-			yield return null;
+                //Debug.Log("d");
+                yield return null;
 		}
 
 		dragon.setMode(Dragon.Mode.LastAttack);
-		for (var w = new Utility.WaitForSeconds(11f, update_time_); !w.end(update_time_);) { yield return null; }
-		Notice.create(0f, 0f,
+            //Debug.Log("e");
+
+            
+            for (var w = new Utility.WaitForSeconds(6f, update_time_); !w.end(update_time_);) { yield return null; }
+            //Debug.Log("f");
+            IsEnd = true;
+            CameraBackageBecomeBlack = true;
+
+            Notice.create(0f, 0f,
 					  update_time_ + 6f,
 					  MySprite.Kind.Logo,
 					  MySprite.Type.Full,
 					  false);
-		for (var w = new Utility.WaitForSeconds(5f, update_time_); !w.end(update_time_);) { yield return null; }
-		
-		SystemManager.Instance.restart();
-	}
+            //Debug.Log("g");
+
+            for (var w = new Utility.WaitForSeconds(6f, update_time_); !w.end(update_time_);) { yield return null; }
+            
+            SystemManager.Instance.restart();
+           
+
+
+
+
+            SystemManager.Instance.BloodVolume = 200f;
+            EnemyBullet.AttackNumber = 0;
+            SystemManager.Instance.NowBloodVolume = 1;
+
+        }
 }
+   
 
 } // namespace UTJ {

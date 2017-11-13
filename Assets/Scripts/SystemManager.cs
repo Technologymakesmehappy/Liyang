@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine.Profiling;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UTJ {
 
@@ -188,6 +190,7 @@ public class SystemManager : MonoBehaviour {
 				go.transform.position = Vector3.zero;
 				go.transform.rotation = Quaternion.identity;
 				go.AddComponent<ShieldRenderer>();
+
 				go.transform.SetParent(player_go_.transform);
 				go.transform.localPosition = new Vector3(0f, 0f, 0f);
 			}
@@ -497,12 +500,18 @@ public class SystemManager : MonoBehaviour {
 		}
 	}
 
+
+
+        //瞎猜一次，这里是模拟地面移动速度
 	private void update_flow_speed(float dt)
 	{
-		const float accel = 60f;
+		const float accel = 60f; 
+            
 		if (Mathf.Abs(flow_speed_ - flow_speed_target_) <= accel * dt) {
-			flow_speed_ = flow_speed_target_;
-		} else if (flow_speed_ < flow_speed_target_) {
+			flow_speed_ = flow_speed_target_; 
+
+                
+            } else if (flow_speed_ < flow_speed_target_) {
 			flow_speed_ += accel * dt;
 		} else {
 			flow_speed_ += -accel * dt;
@@ -567,6 +576,7 @@ public class SystemManager : MonoBehaviour {
 					if (elapsed > 1f) {
 						GameManager.Instance.setReplayMode(false);
 						restart();
+                           
 						pause_ = false;
 					}
 				} else {
@@ -693,32 +703,58 @@ public class SystemManager : MonoBehaviour {
 		draw_buffer_[updating_front].registMotion(motion);
 	}
 
-	/*
-	 * 以下は MailThread
-	 */
+        /*
+         * 以下は MailThread
+         */
 
-	// 入力更新
+        // 入力更新
+        private bool IsBegan = false;  //Temp测试
+        public bool IsBeganDanyi = false;
 	private void input_update()
 	{
-		int[] buttons = InputManager.Instance.referButtons();
-            buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f) 
-                    + Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).x * 2 * 4096), -4096, 4096);
-            buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * 4096f) 
-                   + Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).y * 2 * 4096), -4096, 4096);
+
+            if (GameManager.Instance.IsEnd)
+            {
+
+                GameObject.Find("Canvas").transform.FindChild("Image").gameObject.SetActive(true);
+            }
+            else
+            {
+                GameObject.Find("Canvas").transform.FindChild("Image").gameObject.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                IsBegan = true;
+                IsBeganDanyi = true;
+            }
+            if (IsBegan)
+            {
+                int[] buttons = InputManager.Instance.referButtons();
+                buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f)
+                        + Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).x * 2 * 4096), -4096, 4096);
+                buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * 4096f)
+                       + Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).y * 2 * 4096), -4096, 4096);
 
 
-            buttons[(int)InputManager.Button.Fire] = (int)((Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha3)) ? 1 : 0);
-            buttons[(int)InputManager.Button.Back] = (int)((Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha4)) ? 1 : 0);
-            buttons[(int)InputManager.Button.Debug] = (int)(Input.GetButtonDown("Fire3") ? 1 : 0);
-		buttons[(int)InputManager.Button.Camera] = (int)(Input.GetButtonDown("Camera") ? 1 : 0);
-		buttons[(int)InputManager.Button.Pause] = (int)(Input.GetButtonDown("Pause") ? 1 : 0);
-		buttons[(int)InputManager.Button.FFWPlus] = (int)(Input.GetButtonDown("FFWPlus") ? 1 : 0);
-		buttons[(int)InputManager.Button.FFWMinus] = (int)(Input.GetButtonDown("FFWMinus") ? 1 : 0);
-		InputManager.Instance.flip();
+                buttons[(int)InputManager.Button.Fire] = (int)((Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha3)) ? 1 : 0);
+                buttons[(int)InputManager.Button.Back] = (int)((Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha4)) ? 1 : 0);
+                buttons[(int)InputManager.Button.Debug] = (int)(Input.GetButtonDown("Fire3") ? 1 : 0);
+                buttons[(int)InputManager.Button.Camera] = (int)(Input.GetButtonDown("Camera") ? 1 : 0);
+                buttons[(int)InputManager.Button.Pause] = (int)(Input.GetButtonDown("Pause") ? 1 : 0);
+                buttons[(int)InputManager.Button.FFWPlus] = (int)(Input.GetButtonDown("FFWPlus") ? 1 : 0);
+                buttons[(int)InputManager.Button.FFWMinus] = (int)(Input.GetButtonDown("FFWMinus") ? 1 : 0);
+                InputManager.Instance.flip();
+            }
+
+		
 	}
-
-	// オブジェクト描画(SetActive)
-	private void render(ref DrawBuffer draw_buffer)
+        //private void Update()
+        //{
+        //    
+        //}
+        // オブジェクト描画(SetActive)
+        private void render(ref DrawBuffer draw_buffer)
 	{
 		// player
 		if (player_go_ != null) {
@@ -762,7 +798,7 @@ public class SystemManager : MonoBehaviour {
 					break;
 				case DrawBuffer.Type.Shutter:
 					shutter_pool_[shutter_idx].SetActive(true);
-					shutter_pool_[shutter_idx].transform.position = draw_buffer.object_buffer_[i].transform_.position_;
+					shutter_pool_[shutter_idx].transform.position = draw_buffer.object_buffer_[i].transform_.position_*1.2f;
 					shutter_pool_[shutter_idx].transform.rotation = draw_buffer.object_buffer_[i].transform_.rotation_;
 					++shutter_idx;
 					break;
@@ -1000,21 +1036,175 @@ public class SystemManager : MonoBehaviour {
 		render_tick2_ = stopwatch_.ElapsedTicks - render_start_tick2_;
 	}
 
-	// The Update
-	void Update()
-	{
-		render_tick3_ = stopwatch_.ElapsedTicks - render_start_tick_;
+        #region 定义玩家总血量的值
+        [HideInInspector]
+        public float  BloodVolume = 200f;//总血量
+        [HideInInspector]
+        public int NowBloodVolume=1;//当前血量
+        public bool IsGameOver = false;
+        public Text fenshu;
+        public Image Image;
+        public Image Tip;
+        public Image TipTwo;
+        public Image TipThree;
+
+        [HideInInspector]
+        public float time = 0;
+        [HideInInspector]
+        public bool IsTipShowTip = false;
+        [HideInInspector]
+        public float timeTipBegan = 2f;
+        [HideInInspector]
+        public bool IsBeganShowTipTwo = false;
+
+
+        public GameObject CameraBackage;
+        public GameObject debrisRenderer;
+
+        public float BecomeBlackTime = 0;
+       
+        #endregion
+        // The Update
+        void Update()
+	    {
+
+            if (GameManager.Instance.CameraBackageBecomeBlack)
+            {
+                //更改相機模式
+                print("我要变黑了");
+                BecomeBlackTime += Time.deltaTime;
+                if (BecomeBlackTime>=2f)
+                { 
+                    CameraBackage.gameObject.SetActive(true);
+                    GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(false);
+                    debrisRenderer.SetActive(false);
+                    
+                    StartCoroutine(WaitBack());
+                }
+            }
+
+
+
+
+#region 控制開始显示图片
+            time += Time.deltaTime;
+            if (time>= timeTipBegan && !IsTipShowTip)
+            {
+                IsTipShowTip = true;
+                Tip.gameObject.SetActive(true);
+               
+            }
+            if (time >= 15)
+            {
+                Tip.gameObject.SetActive(false);
+            }
+            if ((Input.GetKeyDown(KeyCode.Alpha1)|| Input.GetKeyDown(KeyCode.Alpha3)) && !IsBeganShowTipTwo)
+            {
+                Tip.gameObject.SetActive(false);
+                IsBeganShowTipTwo = true;
+                StartCoroutine(ShowTipFlash());
+            }
+            #endregion
+
+           
+
+
+
+                #region 计算玩家血量 Li
+                if (BloodVolume >= 1)
+            {
+                
+                NowBloodVolume = (int)(BloodVolume - EnemyBullet.AttackNumber*0.3f);
+                //print(NowBloodVolume+ "++++++++++++++++++NowBloodVolume");
+                if (NowBloodVolume <= 0)
+                {
+                    print("游戲結束");
+                    IsGameOver = true;
+                    if (NowBloodVolume<0)
+                    {
+                        NowBloodVolume = 0;
+                    }
+                    print(NowBloodVolume + "________________NowBloodVolume");
+                }
+            }
+            //分数显示
+            fenshu.text = "能量：" + NowBloodVolume.ToString();
+            #endregion
+            #region 游戏结束逻辑
+            if (IsGameOver)
+            {
+                IsGameOver = false;
+                //游戏结束时若是被敌人打死，则重新加载场景,显示游戏结束的界面
+                Image.gameObject.SetActive(true);
+                print("激活游戲結束的面板"+IsGameOver);
+
+                //BloodVolume = 350f;
+                //NowBloodVolume = 1;
+                GameManager.Instance.CameraBackageBecomeBlack = true;
+                StartCoroutine(iNITGmae());
+            }
+
+            #endregion
+
+            render_tick3_ = stopwatch_.ElapsedTicks - render_start_tick_;
 		PerformanceFetcher.PushMarker("Update");
 		unity_update();
 		end_of_frame();
 		PerformanceFetcher.PopMarker();
 		render_tick4_ = stopwatch_.ElapsedTicks - render_start_tick_;
-	}
+	    }
 
-	void LateUpdate()
-	{
-		camera_update();
-	}
+        IEnumerator WaitBack()
+        {
+            yield return new WaitForSeconds(5f);
+            CameraBackage.gameObject.SetActive(false);
+            GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(true);
+            debrisRenderer.SetActive(true);
+        }
+
+            IEnumerator ShowTipFlash()
+        {
+            Tip.gameObject.SetActive(false);
+            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(false);
+            TipTwo.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(true);
+            TipTwo.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(false);
+            TipTwo.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(true);
+            TipTwo.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(false);
+            TipTwo.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(true);
+            TipTwo.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            TipThree.gameObject.SetActive(false);
+            TipTwo.gameObject.SetActive(false);
+            
+        }
+
+
+        IEnumerator iNITGmae()
+        {
+            yield return new WaitForSeconds(3f);
+           
+            Image.gameObject.SetActive(false);
+            SystemManager.Instance.restart();
+            BloodVolume = 200f;
+            EnemyBullet.AttackNumber = 0;
+            NowBloodVolume = 1;
+        }
+        void LateUpdate()
+	    {
+		    camera_update();
+	    }
 
 	void OnApplicationQuit()
 	{
