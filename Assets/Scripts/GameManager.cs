@@ -26,6 +26,9 @@ public class GameManager
 
         public bool CameraBackageBecomeBlack = false;
 
+
+        public bool IsRankMiss = false;
+
 	public void init()
 	{
 		enumerator_ = act();	// この瞬間は実行されない
@@ -48,6 +51,14 @@ public class GameManager
 	public void restart()
 	{
             Debug.Log("重新开始");
+
+            //开始播放游戏开始时背景音乐
+            AudioControl.IsPlayBeganAudioClip = true;
+
+            //隐藏排行榜
+            SystemManager.Instance.IsRankMiss = true;
+
+
             //重置各种条件
             SystemManager.Instance.BecomeBlackTime = 0;
 
@@ -64,9 +75,30 @@ public class GameManager
 
             //重置血量
             Explosion.Instance.PlayerAttackEnemyNumber = 0;
-            
 
-        SystemManager.Instance.IsBeganDanyi = false;
+            ////可以开始倒计时
+            //BeganGameAudioControl.instance.IsBenganIenumber = true;
+
+            BeganGameAudioControl.instance.IsEnableQifeiQiandaojishiyinxiao = false;
+
+            //灯光控制
+            BeganGameAudioControl.instance.IslightBecome = false;
+
+
+            //点击开始前等待声音准备完毕
+            BeganGameAudioControl.instance.WaitAudioReady = 0;
+
+            BeganGameAudioControl.instance.IsBenganIenumber = true;
+
+
+            
+            //GameTimeResourcesControl._instance.IsResurceEnd = false;
+            //GameTimeResourcesControl._instance.currentTime = 0;
+            Debug.Log("调用一次资源加载完毕");
+
+
+
+            SystemManager.Instance.IsBeganDanyi = false;
             replay_manager_.stopRecording();
 		replay_manager_.stopPlaying(Player.Instance);
 		enumerator_ = null;
@@ -108,23 +140,28 @@ public class GameManager
 							start_replay = true;
 						}
 					} else {
-						if (elapsed_time > 30f) {
-							start_replay = true;
+						if (elapsed_time > 40f)
+                            {//测试时将等待自动攻击的时间减少为10F   elapsed_time > 30f
+                                start_replay = true;
 							replay_mode_ = true;
 						}
 					}
 					if (start_replay) {
-						exit_title = true;
-						SystemManager.Instance.setSubjective(false);
+                            exit_title = true; 
+                            UnityEngine.Debug.Log("Camera Move");
+
+                            //在这里走自动战斗的逻辑
+						//SystemManager.Instance.setSubjective(false);
 						replay_manager_.startPlaying(update_time_, Player.Instance);
 					}
 				}
 			}
 			if (exit_title) {
-				game_phase_ = GamePhase.Game;
-				SystemManager.Instance.registSound(DrawBuffer.SE.Missile);
-				SystemManager.Instance.registMotion(DrawBuffer.Motion.GoodLuck);
-			}
+				game_phase_ = GamePhase.Game;   //这里是控制游戏飞机的运行
+     
+                SystemManager.Instance.registSound(DrawBuffer.SE.Missile);
+                SystemManager.Instance.registMotion(DrawBuffer.Motion.GoodLuck);
+                }
 			yield return null;
 		}
 		notice.destroy();
@@ -224,19 +261,11 @@ public class GameManager
             //Debug.Log("g");
 
             for (var w = new Utility.WaitForSeconds(6f, update_time_); !w.end(update_time_);) { yield return null; }
-            
-            SystemManager.Instance.restart();
            
-
-
-
-
-            SystemManager.Instance.BloodVolume = 200f;
-            EnemyBullet.AttackNumber = 0;
-            SystemManager.Instance.NowBloodVolume = 1;
-
+                SystemManager.Instance.restart();
+                SystemManager.Instance.BloodVolume = 200f;
+                EnemyBullet.AttackNumber = 0;
+                SystemManager.Instance.NowBloodVolume = 1;
         }
 }
-   
-
 } // namespace UTJ {

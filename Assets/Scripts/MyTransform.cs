@@ -28,17 +28,17 @@ public struct MyTransform
 		return Matrix4x4.TRS(position_, rotation_, new Vector3(1f, 1f, 1f));
 	}
 
-	public Matrix4x4 getInverseR()
-	{
-		var mat_rot = Matrix4x4.TRS(CV.Vector3Zero,
-									rotation_,
-									CV.Vector3One);
-		var mat = mat_rot.transpose;
-		// mat.SetColumn(3, new Vector4(-position_.x, -position_.y, -position_.z, 1f));
-		return mat;
-	}
+        public Matrix4x4 getInverseR()
+        {
+            var mat_rot = Matrix4x4.TRS(CV.Vector3Zero,
+                                        rotation_,
+                                        CV.Vector3One);
+            var mat = mat_rot.transpose;
+            // mat.SetColumn(3, new Vector4(-position_.x, -position_.y, -position_.z, 1f));
+            return mat;
+        }
 
-	public MyTransform add(ref Vector3 offset) {
+        public MyTransform add(ref Vector3 offset) {
 		var transform = new MyTransform();
 		transform.position_ = transformPosition(ref offset);
 		transform.rotation_ = rotation_;

@@ -50,9 +50,17 @@ public class ReplayManager
 		return (recorded_frame_number_ > 0);
 	}
 
+
+        //定义变量判断当前是否是在自动战斗
+        public static bool IsAutoAttack = false;
 	public void startPlaying(double update_time, Player player)
 	{
-		frame_index_ = 0;
+            //此时自动战斗为真
+            IsAutoAttack = true;
+
+
+
+        frame_index_ = 0;
 		start_time_ = update_time;
 		is_recording_ = false;
 		is_playing_ = true;

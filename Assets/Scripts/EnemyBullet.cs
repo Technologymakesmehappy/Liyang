@@ -92,6 +92,7 @@ public class EnemyBullet : Task
 		start_ = update_time;
 		length_ = length;
 		beam_id_ = Beam2.Instance.spawn(width, Beam2.Type.EnemyBullet);
+            Debug.Log("敌人发射子弹++++++++++++++++++++++++++++");
 	}
 
 	public override void destroy()
@@ -139,6 +140,6 @@ public class EnemyBullet : Task
 									ref tail);
 	}
 
-}
+  }
 
 } // namespace UTJ {

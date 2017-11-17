@@ -117,7 +117,7 @@ public class OVRDebugInfo : MonoBehaviour
             InitUIComponents();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && riftPresentTimeout < 0.0f)
+        if (Input.GetKeyDown(KeyCode.Space) && riftPresentTimeout < 0.0f)   //将按下空格键的逻辑注释，不再转换视角 视角转换关闭
         {
             initUIComponent = true;
             showVRVars ^= true;

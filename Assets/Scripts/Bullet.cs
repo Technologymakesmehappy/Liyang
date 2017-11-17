@@ -56,8 +56,6 @@ public class Bullet : Task
 
 
             //玩家发射子弹的地方
-
-           
             Debug.Log("玩家发射子弹");
         }
 

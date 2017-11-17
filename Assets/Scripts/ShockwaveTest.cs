@@ -15,6 +15,10 @@ public class ShockwaveTest : MonoBehaviour {
 		ready_ = true;
 
 		GetComponent<MeshRenderer>().sharedMaterial = material_;
+
+
+          
+          
 		var range = 2.5f;
 		for (;;) {
 			var pos = new Vector3(Random.Range(-range, range),

@@ -14,7 +14,8 @@ public partial class Enemy : Task
 	public static void createPool()
 	{
 		pool_ = new Enemy[POOL_MAX];
-		for (var i = 0; i < POOL_MAX; ++i) {
+		for (var i = 0; i < POOL_MAX; ++i)
+        {
 			var enemy = new Enemy();
 			enemy.alive_ = false;
 			// enemy.type_ = Type.None;

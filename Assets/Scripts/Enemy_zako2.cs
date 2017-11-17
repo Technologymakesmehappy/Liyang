@@ -52,7 +52,8 @@ public partial class Enemy : Task
 			yield return null;
 		}
 
-		for (var i = new Utility.WaitForSeconds(4f, update_time_); !i.end(update_time_);) {
+		for (var i = new Utility.WaitForSeconds(4f, update_time_); !i.end(update_time_);)
+        {
 			rigidbody_.addOrientTorque(ref CV.Vector3Back, 100f);
 			rigidbody_.addForceZ(-80f);
 			yield return null;
