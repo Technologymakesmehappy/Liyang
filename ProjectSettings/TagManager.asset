@@ -7,6 +7,7 @@ TagManager:
   - BulletTemp
   - wall
   - Enemy
+  - feiji
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - 
   - FinalRender
-  - 
+  - aaa
   - 
   - 
   - 

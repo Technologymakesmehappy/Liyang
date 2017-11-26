@@ -51,7 +51,8 @@ public struct LightBall
 
 	public void update(float dt)
 	{
-		for (var i = 0; i < phase_list_.Length; ++i) {
+		for (var i = 0; i < phase_list_.Length; ++i)
+        {
 			phase_list_[i] += (-2f * dt);
 			phase_list_[i] = Mathf.Repeat(phase_list_[i], 1f);
 		}

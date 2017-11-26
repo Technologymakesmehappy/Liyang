@@ -127,7 +127,13 @@ public class GameManager
 		while (game_phase_ == GamePhase.Title) {
 			bool exit_title = false;
 			var elapsed_time = update_time_ - leave_time_start;
-			if (InputManager.Instance.getButton(InputManager.Button.Fire) > 0) {
+
+                //李林告诉我这里是游戏开始时的控制
+
+                //if (InputManager.Instance.getButton(InputManager.Button.Fire) > 0)  此处若InputManager.Instance.getButton(InputManager.Button.Fire) > 0  则表示需要按下开火按键才可以开火，等于0时表示不需要按下也可以开火
+
+                if (InputManager.Instance.getButton(InputManager.Button.Fire) == 0)
+            {
                     GameManager.instance_.IsEnd = false;
                     exit_title = true;
 				replay_manager_.startRecording(update_time_);
@@ -261,11 +267,15 @@ public class GameManager
             //Debug.Log("g");
 
             for (var w = new Utility.WaitForSeconds(6f, update_time_); !w.end(update_time_);) { yield return null; }
-           
-                SystemManager.Instance.restart();
-                SystemManager.Instance.BloodVolume = 200f;
-                EnemyBullet.AttackNumber = 0;
-                SystemManager.Instance.NowBloodVolume = 1;
+
+
+
+            SystemManager.Instance.IsGameOverNewScene = true;
+            //由于不要自动开始，下面的逻辑不走，直接注释
+            //SystemManager.Instance.restart();
+            //SystemManager.Instance.BloodVolume = 200f;
+            //EnemyBullet.AttackNumber = 0;
+            //SystemManager.Instance.NowBloodVolume = 1;
         }
 }
 } // namespace UTJ {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UTJ;
 
 
 public class Destroy : MonoBehaviour {
@@ -9,7 +10,7 @@ public class Destroy : MonoBehaviour {
 	void Start ()
     {
      
-        Destroy(this.gameObject,2f);
+        Destroy(this.gameObject,0.5f);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,10 +27,11 @@ public class Destroy : MonoBehaviour {
           
                 GameObject Ex = GameObject.Instantiate(Resources.Load<GameObject>("Ef_ExplosionThree"), other.gameObject.transform.position, other.gameObject.transform.rotation);
                 Destroy(Ex, 0.5f);
-       
+            
 
 
-                
+
+
             //AttackSucceedNumber = 0;
             //}
             //else
@@ -39,10 +41,10 @@ public class Destroy : MonoBehaviour {
             //}
             //加分
             //实例化爆炸效果
-           
-          
-            
-            
+
+
+
+
         }
         //如果打到了大的敌人
         else if (other.gameObject.tag == "Enemy")

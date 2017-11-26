@@ -23,10 +23,10 @@ public struct MyTransform
 		return position_ + rotation_ * pos;
 	}
 
-	public Matrix4x4 getTRS()
-	{
-		return Matrix4x4.TRS(position_, rotation_, new Vector3(1f, 1f, 1f));
-	}
+        public Matrix4x4 getTRS()
+        {
+            return Matrix4x4.TRS(position_, rotation_, new Vector3(1f, 1f, 1f));
+        }
 
         public Matrix4x4 getInverseR()
         {
@@ -38,12 +38,13 @@ public struct MyTransform
             return mat;
         }
 
-        public MyTransform add(ref Vector3 offset) {
-		var transform = new MyTransform();
-		transform.position_ = transformPosition(ref offset);
-		transform.rotation_ = rotation_;
-		return transform;
-	}
-}
+        public MyTransform add(ref Vector3 offset)
+        {
+            var transform = new MyTransform();
+            transform.position_ = transformPosition(ref offset);
+            transform.rotation_ = rotation_;
+            return transform;
+        }
+    }
 
 } // namespace UTJ {

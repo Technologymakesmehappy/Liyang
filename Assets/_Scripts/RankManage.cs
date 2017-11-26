@@ -7,6 +7,7 @@ public class RankManage : MonoBehaviour
 {
 
     public static RankManage instance;
+    public static bool IsTimeScale = false;
     private GameObject rank;
     private void OnEnable()
     {
@@ -26,6 +27,9 @@ public class RankManage : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         RankSend._instance.SendScore(Explosion.Instance.PlayerAttackEnemyNumber);
+        yield return new WaitForSeconds(1f);
+        //Time.timeScale = 0;
+        //IsTimeScale = true;
     }
 
 }

@@ -144,7 +144,6 @@ public class Player
 				break;
 		}
 	}
-
 	private void internal_update_for_replay(float dt, double update_time)
 	{
 		MyTransform transform = new MyTransform();
@@ -215,7 +214,7 @@ public class Player
 		// fire bullets
 		if (fire_button_|| CanFire) {
                 //玩家可以开火
-                Debug.Log("按下开火键");
+
 			if (can_fire_time_ - update_time > 0f && update_time - fire_time_ > 0f) {
 				var lpos = rigidbody_.transform_.transformPosition(ref l_bullet_locator_);
 				Bullet.create(ref lpos, ref rigidbody_.transform_.rotation_, 120f /* speed */, update_time);
@@ -230,12 +229,12 @@ public class Player
 		}
 
 		// lockonrange display
-		LockonRange.Instance.setOn(fire_button_);
+        // LockonRange.Instance.setOn(fire_button_);
 		now_locking_ = fire_button_;
 
 		// fire missiles
 		if (fire_button_released) {
-			bool fired = LockTarget.fireMissiles(this);
+                bool fired =  LockTarget.fireMissiles(this);
 			if (fired) {
 				SystemManager.Instance.registSound(DrawBuffer.SE.Missile);
 			}

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlDanyi:MonoBehaviour  {
-
-
+public class ControlDanyi:MonoBehaviour
+{
     private float X;
     private float Y;
     private float Z;
@@ -19,7 +18,7 @@ public class ControlDanyi:MonoBehaviour  {
         get { return ShootForce > 1; }
 
     }
-    //public Transform m_pHand;
+    public Transform m_pHand;
     private PlayerSvc Svc;
     private Vector3 currentPos = Vector3.zero;
 
@@ -29,13 +28,13 @@ public class ControlDanyi:MonoBehaviour  {
         //InitiaPlayerSvc
         InitializePlayerSvc();
 
-        //if (!m_pHand)
-        //    Debug.LogError("没有头部");
+        if (!m_pHand)
+            Debug.LogError("没有头部");
     }
     //private bool IsBegan = false;
     void LateUpdate()
     { 
-        if (/*m_pHand&&*/!isQuit)
+        if (m_pHand&&!isQuit)
         {
             if (IsShoot)
             {
@@ -46,12 +45,12 @@ public class ControlDanyi:MonoBehaviour  {
             }
             else
             {
-                //X = ((m_pHand.localRotation * Vector3.forward).y) * 80;
-                //Y = ((m_pHand.localRotation * Vector3.forward).x) * 80;
-                //Z = ((m_pHand.localRotation ).z) * 80;
+                X = ((m_pHand.localRotation * Vector3.forward).y) * 80;
+                Y = ((m_pHand.localRotation * Vector3.forward).x) * 80;
+                Z = ((m_pHand.localRotation ).z) * 80;
                 //print(string.Format("X:{0},Y:{1},Z:{2}", X, Y, Z));
-                Y = Input.GetAxis("Horizontal")*30;  //左右移动
-                X = -Input.GetAxis("Vertical")*18;   //上下移动
+                //Y = Input.GetAxis("Horizontal")*30;  //左右移动
+                //X = -Input.GetAxis("Vertical")*18;   //上下移动
                 Z = 0;
 
                 SendMotion(Z+ X,-Z+X , Y);

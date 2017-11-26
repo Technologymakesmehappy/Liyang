@@ -105,6 +105,7 @@ public class EnemyBullet : Task
 
 	public override void update(float dt, double update_time, float flow_speed)
 	{
+        
 		if (MyCollider.getHitOpponentForEnemyBullet(collider_) != MyCollider.Type.None) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.EnemyBullet, update_time);
                 Debug.Log("攻击到我了1");

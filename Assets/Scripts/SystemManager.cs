@@ -161,10 +161,10 @@ public class SystemManager : MonoBehaviour {
 #if UNITY_PSP2
 		UnityEngine.PSVita.Diagnostics.enableHUD = true;
 #endif
+            //注释DontDestroyOnLoad
+            //DontDestroyOnLoad(gameObject);
 
-		DontDestroyOnLoad(gameObject);
-
-		stopwatch_ = new System.Diagnostics.Stopwatch();
+            stopwatch_ = new System.Diagnostics.Stopwatch();
 		stopwatch_.Start();
 		rendering_front_ = 0;
 
@@ -192,7 +192,9 @@ public class SystemManager : MonoBehaviour {
 				go.AddComponent<ShieldRenderer>();
 
 				go.transform.SetParent(player_go_.transform);
-				go.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                    //在这里控制敌人打到玩家的特效的位置
+				go.transform.localPosition = new Vector3(0f, 0.5f, 1.2f);
 			}
 		}
 
@@ -660,6 +662,11 @@ public class SystemManager : MonoBehaviour {
 	
 	void Start()
 	{
+
+            //游戏开始时，不用按键即可开始游戏，将按下1键开始游戏的条件关闭
+            StartCoroutine(BeganGame());
+
+
             #region 在游戏刚刚开始的时候调用一次重置游戏的方法，避免飞机开始时的降落
             //在游戏刚刚开始的时候调用一次重置游戏的方法，避免飞机开始时的降落
             print("此时出于自动战斗模式，点击切换游戏模式");
@@ -690,6 +697,20 @@ public class SystemManager : MonoBehaviour {
 #endif
             StartCoroutine(Times());
 	}
+
+        #region 直接开始游戏，不用按键
+        IEnumerator BeganGame()
+        {
+            yield return new WaitForSeconds(1f);
+
+            IsBegan = true;
+            IsBeganDanyi = true;
+            print("IsBeganIsBeganIsBeganIsBeganIsBeganIsBeganIsBegan"+ IsBegan);
+
+        }
+        #endregion
+
+
         IEnumerator Times()
         {
             yield return new WaitForSeconds(1);
@@ -739,6 +760,10 @@ public class SystemManager : MonoBehaviour {
 
         public bool IsRankMiss = false;
 
+
+
+        
+
         IEnumerator WaitMiss()
         {
             yield return new WaitForSeconds(4f);
@@ -749,6 +774,7 @@ public class SystemManager : MonoBehaviour {
             
             if (IsRankMiss)
             {
+                
                 RankManager.instance.Hide();
                 IsRankMiss = false;
             }
@@ -779,29 +805,30 @@ public class SystemManager : MonoBehaviour {
                 GameObject.Find("Canvas").transform.FindChild("Image").gameObject.SetActive(false);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)||Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.JoystickButton0))
+            #region  游戏开始时的控制，按键1游戏开始 现在先注释
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 IsBegan = true;
                 IsBeganDanyi = true;
-                print("IsBeganIsBeganIsBeganIsBeganIsBeganIsBeganIsBegan"+ IsBegan);
+                print("IsBeganIsBeganIsBeganIsBeganIsBeganIsBeganIsBegan" + IsBegan);
             }
+            #endregion
 
-            
             if (IsBegan)//按键准备就绪并且游戏开始的声音播放完毕
             {
                 IsCanPlayDaojishi = true;
                 int[] buttons = InputManager.Instance.referButtons();
                 #region 头部可以控制飞机的运动
-                //buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f)
-                //        + (playerCamera? Mathf.Clamp((int)(( playerCamera.transform.rotation * Vector3.forward).x * 2 * 4096), -4096, 4096):0);
-                //buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * (-4096f))
-                //       + (playerCamera? Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).y * 2 * 4096), -4096, 4096):0);
+                buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f*0.5f)
+                        + (playerCamera ? Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).x * 4096), (int)(-4096), (int)(4096 )) : 0);
+                buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * (-4096f*0.5f))
+                       + (playerCamera ? Mathf.Clamp((int)((playerCamera.transform.rotation * Vector3.forward).y  * 4096), (int)(-4096 ), (int)(4096 )) : 0);
                 #endregion
 
                 #region 头部不能控制飞机的运动
-                buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f*0.5f*0.5f);    //在这里 *0.5f 可以将飞机的偏移速度降低
-                        
-                buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * (-4096f*0.5f*0.5f));    //在这里 *0.5f 可以将飞机的偏移速度降低
+                //buttons[(int)InputManager.Button.Horizontal] = (int)(Input.GetAxis("Horizontal") * 4096f*0.8f);    //在这里 *0.5f 可以将飞机的偏移速度降低
+
+                //buttons[(int)InputManager.Button.Vertical] = (int)(Input.GetAxis("Vertical") * (4096f*0.8f));    //在这里 *0.5f 可以将飞机的偏移速度降低
 
                 #endregion
 
@@ -825,10 +852,12 @@ public class SystemManager : MonoBehaviour {
         //}
         // オブジェクト描画(SetActive)
         private void render(ref DrawBuffer draw_buffer)
-	{
+	    {
 		// player
 		if (player_go_ != null) {
-			player_go_.transform.position = draw_buffer.player_transform_.position_;
+
+            //在这里控制实例化出来的玩家的位置
+			player_go_.transform.position = draw_buffer.player_transform_.position_+new Vector3(0,1,0);
 			player_go_.transform.rotation = draw_buffer.player_transform_.rotation_;
 			player_arm_transform_.localPosition = draw_buffer.player_arm_offset_;
 		}
@@ -1022,8 +1051,9 @@ public class SystemManager : MonoBehaviour {
 				resetView();
 			}
 			if (subjective_) {
-				camera_holder_transform_.position = (player_go_.transform.position +
-													 new Vector3(0, 0.5f, 0f + view_offset_z_));
+                    camera_holder_transform_.position = (player_go_.transform.Find("CameraTarget").position);
+                                                  //   new Vector3(0, 0.5f, 0f + view_offset_z_));
+				
 			} else {
 				camera_holder_transform_.position = new Vector3(0, 0, 0);
 			}
@@ -1164,11 +1194,30 @@ public class SystemManager : MonoBehaviour {
         public GameObject debrisRenderer;
 
         public float BecomeBlackTime = 0;
-       
+
+        public bool IsGameOverNewScene = false;
+
+
+        public AudioSource audioSoueceTip;
+        
         #endregion
         // The Update
         void Update()
 	    {
+            if (SystemManager.Instance.IsGameOverNewScene)
+            {
+                print("游戏结束，回到选择关卡的界面");
+                print("游戏结束，回到选择关卡的界面");
+                
+                update_thread_.Abort();
+                SceneManager.LoadScene("ChooseLevel");
+            }
+            #region 判定游戏是否结束，如果游戏已经结束，则将场景切回选择关卡的界面
+              
+
+#endregion
+
+
             #region 判断当前是否是自动战斗，如果是，任意键按下则切回游戏模式
             //判断当前是否是自动战斗，如果是，任意键按下则切回游戏模式
             if (ReplayManager.IsAutoAttack==true && (Input.GetKeyDown(KeyCode.Alpha1)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.Alpha4)|| Input.GetKeyDown(KeyCode.JoystickButton0)))
@@ -1189,43 +1238,85 @@ public class SystemManager : MonoBehaviour {
             #endregion
 
 
-
+       
             #region 通过判断通道位置来处理显示提示先后的逻辑
             //通过判断通道位置来处理显示提示先后的逻辑
             //每次變換状态之后都要主动激活_mgameTip，然后再_mgameTip身上，显示5秒之后自动消失
-            if (tube_B01==null)
-            {
-                tube_B01 = GameObject.Find("tube_B01(Clone)");
-            }
-            if (tube_B01.GetComponent<Transform>().position.z <= -511f&& mGameTip == GameTip.GameBeganTip)
-            {
-                _mgameTip.gameObject.SetActive(true);
-                mGameTip = GameTip.WarningTip;
-            }
-            if (tube_B01.GetComponent<Transform>().position.z <= -1047f && mGameTip == GameTip.WarningTip)
-            {
-                _mgameTip.gameObject.SetActive(true);
-                mGameTip = GameTip.AttackTip;
-            }
-            if (tube_B01.GetComponent<Transform>().position.z <= -6571f && mGameTip == GameTip.AttackTip)
-            {
-                _mgameTip.gameObject.SetActive(true);
-                mGameTip = GameTip.DoorTip;
-            }
-            if (tube_B01.GetComponent<Transform>().position.z <= -10000f && mGameTip == GameTip.DoorTip)
-            {
-                
-                mGameTip = GameTip.GameBeganTip;
-            }
-            if (tube_B01.GetComponent<Transform>().position.z <= -10000f)
-            {
-                _mgameTip.gameObject.SetActive(false);
-            }
-            if (tube_B01.GetComponent<Transform>().position.z == -500f)
-            {
-                StartCoroutine(waitGameTipEnum());
-                mGameTip = GameTip.GameBeganTip;
-            }
+
+                if (tube_B01 == null)
+                {
+                    tube_B01 = GameObject.Find("tube_B01(Clone)");
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -511f && mGameTip == GameTip.GameBeganTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.WarningTip;
+                    audioSoueceTip.clip = Resources.Load<AudioClip>("请注意，敌人来袭，做好战斗准备");
+                    audioSoueceTip.Play();
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -1047f && mGameTip == GameTip.WarningTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.AttackTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -6571f && mGameTip == GameTip.AttackTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.DoorTip;
+                    audioSoueceTip.clip = Resources.Load<AudioClip>("前方有危险，注意躲避");
+                    audioSoueceTip.Play();
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -10000f && mGameTip == GameTip.DoorTip)
+                {
+
+                    mGameTip = GameTip.GameBeganTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -10000f)
+                {
+                    _mgameTip.gameObject.SetActive(false);
+                }
+                if (tube_B01.GetComponent<Transform>().position.z == -500f)
+                {
+                    StartCoroutine(waitGameTipEnum());
+                    mGameTip = GameTip.GameBeganTip;
+                }
+
+
+                if (tube_B01 == null)
+                {
+                    tube_B01 = GameObject.Find("tube_B01(Clone)");
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -511f && mGameTip == GameTip.GameBeganTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.WarningTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -1047f && mGameTip == GameTip.WarningTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.AttackTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -6571f && mGameTip == GameTip.AttackTip)
+                {
+                    _mgameTip.gameObject.SetActive(true);
+                    mGameTip = GameTip.DoorTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -10000f && mGameTip == GameTip.DoorTip)
+                {
+
+                    mGameTip = GameTip.GameBeganTip;
+                }
+                if (tube_B01.GetComponent<Transform>().position.z <= -10000f)
+                {
+                    _mgameTip.gameObject.SetActive(false);
+                }
+                if (tube_B01.GetComponent<Transform>().position.z == -500f)
+                {
+                    StartCoroutine(waitGameTipEnum());
+                    mGameTip = GameTip.GameBeganTip;
+                }
+
+           
 
 
             //在这里处理游戏开始时 各种游戏提醒的逻辑：1、按任意建开始游戏；2、注意，前方危险；3、尽快击毙前方敌机
@@ -1305,17 +1396,19 @@ public class SystemManager : MonoBehaviour {
                 }
                 
             }
-            if ((Input.GetKeyDown(KeyCode.Alpha1)|| Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.JoystickButton0)) && !IsBeganShowTipTwo/*&& GameTimeResourcesControl._instance.IsResurceEnd*/)
+            #region 按下开始游戏的按键之后，Tip信息开始展示   //先注释
+            if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.JoystickButton0)) && !IsBeganShowTipTwo/*&& GameTimeResourcesControl._instance.IsResurceEnd*/)
             {
                 Tip.gameObject.SetActive(false);
                 IsBeganShowTipTwo = true;
                 //StartCoroutine(ShowTipFlash());   //調用手柄提示
             }
             #endregion
-               
-            
+            #endregion
+
+
             #region 计算玩家血量 Li
-                if (BloodVolume >= 1)
+            if (BloodVolume >= 1)
             {
                 
                 NowBloodVolume = (int)(BloodVolume - EnemyBullet.AttackNumber*0.3f);
@@ -1358,6 +1451,7 @@ public class SystemManager : MonoBehaviour {
 
                 //BloodVolume = 350f;
                 //NowBloodVolume = 1;
+                
                 GameManager.Instance.CameraBackageBecomeBlack = true;
                 StartCoroutine(iNITGmae());
             }
@@ -1383,7 +1477,7 @@ public class SystemManager : MonoBehaviour {
 
         IEnumerator WaitBack()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(20f);
             CameraBackage.gameObject.SetActive(false);
             GameObject.Find("player 1(Clone)").transform.FindChild("cockpit-07_Prefab").gameObject.SetActive(true);
             GameObject.Find("CanvasFenshuManage").transform.FindChild("Fenshu").gameObject.SetActive(true);//显示血量
@@ -1391,7 +1485,9 @@ public class SystemManager : MonoBehaviour {
             GameObject.Find("CanvasFenshuManage").transform.FindChild("Health").gameObject.SetActive(true);//显示血量条
 
             GameObject.Find("CanvasFenshuManage").transform.FindChild("Score").gameObject.SetActive(true);//显示分数
+
             debrisRenderer.SetActive(true);
+            
         }
 
             IEnumerator ShowTipFlash()
@@ -1419,20 +1515,26 @@ public class SystemManager : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             TipThree.gameObject.SetActive(false);
             TipTwo.gameObject.SetActive(false);
-            
         }
 
 
         IEnumerator iNITGmae()
         {
-            yield return new WaitForSeconds(4f);
-            RankManager.instance.Hide();
             yield return new WaitForSeconds(3f);
+
+            yield return new WaitForSeconds(3f);
+            
+            RankManager.instance.Hide();
             Image.gameObject.SetActive(false);
-            SystemManager.Instance.restart();
-            BloodVolume = 200f;
-            EnemyBullet.AttackNumber = 0;
-            NowBloodVolume = 1;
+            Camera.main.GetComponent<Camera>().cullingMask = 0;
+            yield return new WaitForSeconds(2f);
+            IsGameOverNewScene = true;
+            
+            //由于不要自动开始，下面的逻辑不走
+            //SystemManager.Instance.restart();
+            //BloodVolume = 200f;
+            //EnemyBullet.AttackNumber = 0;
+            //NowBloodVolume = 1;
         }
         void LateUpdate()
 	    {

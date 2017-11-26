@@ -16,8 +16,13 @@ public struct MyCollider
 	private static MyCollider[] pool_enemy_bullet_;
 	private static int pool_enemy_bullet_index_;
 
+
+       // public static System.Func<MyCollider[]> GetMyCollider;
+
 	public static void createPool()
 	{
+            
+
 		player_.alive_ = false;
 		player_.id_ = 0;
 		player_.type_ = Type.Player;
@@ -208,6 +213,7 @@ public struct MyCollider
 				check_intersection(ref player_, ref pool_enemy_bullet_[i]);
 			}
 		}
+           
 		// enemy - bullet
 		for (var i = 0; i < pool_enemy_.Length; ++i) {
 			if (pool_enemy_[i].alive_ && !pool_enemy_[i].disabled_) {

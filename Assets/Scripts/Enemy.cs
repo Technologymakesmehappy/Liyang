@@ -120,7 +120,8 @@ public partial class Enemy : Task
 
 	public override void update(float dt, double update_time, float flow_speed)
 	{
-		if (phase_ == Phase.Dying) {
+          
+            if (phase_ == Phase.Dying) {
 			destroy();
 			return;
 		}
@@ -129,7 +130,9 @@ public partial class Enemy : Task
 		if (enumerator_ != null) {
 			enumerator_.MoveNext();
 		}
-		if (alive_) {
+           
+            if (alive_) {
+             
 			on_update_(dt, flow_speed);
 		}
 	}

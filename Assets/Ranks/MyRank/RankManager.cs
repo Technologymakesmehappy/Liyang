@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UTJ;
 
 public enum ButtonStat
 {
@@ -81,7 +82,9 @@ public class RankManager : MonoBehaviour
 
    public  void Hide()
     {
-        this.transform.GetChild(0).gameObject.SetActive(false);
+
+            this.transform.GetChild(0).gameObject.SetActive(false);
+        
     }
     void BLocakRank()
     {

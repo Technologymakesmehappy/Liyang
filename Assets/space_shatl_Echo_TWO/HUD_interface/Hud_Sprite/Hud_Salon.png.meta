@@ -1,0 +1,316 @@
+fileFormatVersion: 2
+guid: ed9364e8094ba9f40ab29293dca31cab
+timeCreated: 1481547737
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Hud_Salon_0
+    21300002: Hud_Salon_1
+    21300004: Hud_Salon_2
+    21300006: Hud_Salon_3
+    21300008: Hud_Salon_4
+    21300010: Hud_Salon_5
+    21300012: Hud_Salon_6
+    21300014: Hud_Salon_7
+    21300016: Hud_Salon_8
+    21300018: Hud_Salon_9
+    21300020: Hud_Salon_10
+    21300022: Hud_Salon_11
+    21300024: Hud_Salon_12
+    21300026: Hud_Salon_13
+    21300028: Hud_Salon_14
+    21300030: Hud_Salon_15
+    21300032: Hud_Salon_16
+    21300034: Hud_Salon_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 1
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 2
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hud_Salon_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2288
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_1
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2288
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2002
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2002
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1716
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_5
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1716
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1430
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_7
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1430
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1144
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_9
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1144
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 858
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_11
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 858
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 572
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_13
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 572
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 286
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 286
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hud_Salon_17
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 1200
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

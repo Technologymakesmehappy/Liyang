@@ -23,7 +23,10 @@ public class CollisionDetection : MonoBehaviour
         if (other.gameObject.tag =="wall")
         {
             //如果玩家的飞船碰到了墙，则相当于玩家被攻击一百次，掉50*0.3滴血量
-            EnemyBullet.AttackNumber += 50;
+            //EnemyBullet.AttackNumber += 50*0.3f;
+
+            //如果玩家的飞船碰到了墙，则相当于玩家被攻击一百次，掉20滴血量
+            EnemyBullet.AttackNumber += 10;
             //当玩家碰到了门时，会触发音效和粒子特效
             //播放声音
             PlayDoorCollisionAudio.Play();

@@ -1,0 +1,344 @@
+fileFormatVersion: 2
+guid: ebd9b1e317168374190e2bc30f0584e6
+timeCreated: 1481056382
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: HUD_Top_2x10_0
+    21300002: HUD_Top_2x10_1
+    21300004: HUD_Top_2x10_2
+    21300006: HUD_Top_2x10_3
+    21300008: HUD_Top_2x10_4
+    21300010: HUD_Top_2x10_5
+    21300012: HUD_Top_2x10_6
+    21300014: HUD_Top_2x10_7
+    21300016: HUD_Top_2x10_8
+    21300018: HUD_Top_2x10_9
+    21300020: HUD_Top_2x10_10
+    21300022: HUD_Top_2x10_11
+    21300024: HUD_Top_2x10_12
+    21300026: HUD_Top_2x10_13
+    21300028: HUD_Top_2x10_14
+    21300030: HUD_Top_2x10_15
+    21300032: HUD_Top_2x10_16
+    21300034: HUD_Top_2x10_17
+    21300036: HUD_Top_2x10_18
+    21300038: HUD_Top_2x10_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HUD_Top_2x10_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1062
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1062
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 944
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_3
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 944
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 826
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 826
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 708
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 708
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 590
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 590
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 472
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_11
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 472
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 354
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_13
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 354
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 236
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_15
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 236
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 118
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HUD_Top_2x10_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -33,7 +33,7 @@ public class RankLogin
         gameId = RankManager.instance.Id;
         if (monitorId.Length == 0)
         {
-            _cououtine= RankManager.instance.StartCoroutine(LoginLeaderBoardServer());
+            //_cououtine= RankManager.instance.StartCoroutine(LoginLeaderBoardServer());
         }
         else
         {
@@ -46,41 +46,41 @@ public class RankLogin
      
     }
 
-    IEnumerator LoginLeaderBoardServer()
-    {
+    //IEnumerator LoginLeaderBoardServer()
+    //{
       
 
-        WWW getIP = new WWW("http://lovattostudio.com/Utils/GetIP.php");
-        yield return getIP;
+    //    WWW getIP = new WWW("http://lovattostudio.com/Utils/GetIP.php");
+    //    yield return getIP;
 
-        if (getIP.error != null && !string.IsNullOrEmpty(getIP.error))
-            Debug.LogError("GetIP Error:" + getIP.error);
+    //    if (getIP.error != null && !string.IsNullOrEmpty(getIP.error))
+    //        Debug.LogError("GetIP Error:" + getIP.error);
 
-        ip = getIP.text;
+    //    ip = getIP.text;
 
-        macStr = GetIMEI();
+    //    macStr = GetIMEI();
 
-        var www = new WWW(string.Format("http://ucenter.pangaeavr.com:8080/user-center/login?version={0}&gameId={1}&ip={2}&mac={3}", gameVersion, gameId, ip, macStr));
+    //    var www = new WWW(string.Format("http://ucenter.pangaeavr.com:8080/user-center/login?version={0}&gameId={1}&ip={2}&mac={3}", gameVersion, gameId, ip, macStr));
 
-        yield return www;
-        if (www.error != null && !string.IsNullOrEmpty(www.error))
-            Debug.LogError("LoginLeaderBoardServer Error:" + www.error);
+    //    yield return www;
+    //    if (www.error != null && !string.IsNullOrEmpty(www.error))
+    //        Debug.LogError("LoginLeaderBoardServer Error:" + www.error);
 
-        try
-        {
-            var globalData = JsonMapper.ToObject<RankGlobalData>(www.text);
-            Debug.Log("MonitorId = " + globalData.monitorId);
-            monitorId = globalData.monitorId;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
+    //    try
+    //    {
+    //        var globalData = JsonMapper.ToObject<RankGlobalData>(www.text);
+    //        Debug.Log("MonitorId = " + globalData.monitorId);
+    //        monitorId = globalData.monitorId;
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        Debug.LogError(e.Message);
+    //    }
 
       
       
       
-    }
+    //}
 
     private string GetIMEI()
     {

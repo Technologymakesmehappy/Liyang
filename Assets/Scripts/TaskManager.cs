@@ -49,8 +49,10 @@ public class TaskManager {
 	
 	public void update(float dt, double update_time, float flow_speed)
 	{
+        
 		for (var it = task_list_.First; it != null; it = it.Next) {
-			it.Value.update(dt, update_time, flow_speed);
+              
+                it.Value.update(dt, update_time, flow_speed);
 		}
 		// add
 		for (var it = add_task_list_.First; it != null; it = it.Next) {

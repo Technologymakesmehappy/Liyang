@@ -64,11 +64,14 @@ public partial class Enemy : Task
 
 	private void zako2_update(float dt, float flow_speed)
 	{
-		if (MyCollider.getHitOpponentForEnemy(collider_) != MyCollider.Type.None) {
+          
+
+            if (MyCollider.getHitOpponentForEnemy(collider_) != MyCollider.Type.None) {
 			rigidbody_.addTorque(MyRandom.Range(-200f, 200f),
 								 MyRandom.Range(-200f, 200f),
 								 MyRandom.Range(-200f, 200f));
-			life_ -= 20f;
+           
+                life_ -= 20f;
 		}
 		if (lock_target_.isHitted()) {
 			rigidbody_.addTorque(MyRandom.Range(-200f, 200f),

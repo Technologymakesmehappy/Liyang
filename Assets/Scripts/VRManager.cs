@@ -20,7 +20,8 @@ public class VRManager : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<VRManager>();
-                DontDestroyOnLoad(_instance.gameObject);
+                //删除DontDestroyOnLoad
+                //DontDestroyOnLoad(_instance.gameObject);
             }
 
             return _instance;
