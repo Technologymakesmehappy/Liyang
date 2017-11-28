@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControlDanyi:MonoBehaviour
 {
+    public static ControlDanyi _instance;
     private float X;
     private float Y;
     private float Z;
@@ -25,6 +26,7 @@ public class ControlDanyi:MonoBehaviour
 
     void Awake()
     {
+        _instance = this;
         //InitiaPlayerSvc
         InitializePlayerSvc();
 
@@ -45,14 +47,17 @@ public class ControlDanyi:MonoBehaviour
             }
             else
             {
-                X = ((m_pHand.localRotation * Vector3.forward).y) * 80;
-                Y = ((m_pHand.localRotation * Vector3.forward).x) * 80;
-                Z = ((m_pHand.localRotation ).z) * 80;
+                X = ((m_pHand.localRotation * Vector3.forward).y) * 60;
+                Y = ((m_pHand.localRotation * Vector3.forward).x) * 50;
+                Z = ((m_pHand.localRotation ).z) * 60;
                 //print(string.Format("X:{0},Y:{1},Z:{2}", X, Y, Z));
                 //Y = Input.GetAxis("Horizontal")*30;  //左右移动
                 //X = -Input.GetAxis("Vertical")*18;   //上下移动
                 Z = 0;
-
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    print( "头动了"+X);
+                }
                 SendMotion(Z+ X,-Z+X , Y);
             }
 
@@ -81,10 +86,13 @@ public class ControlDanyi:MonoBehaviour
             return;
 
         x = Mathf.Clamp(x, -30, 80);
-        y = Mathf.Clamp(y, -80, 80);
+        y = Mathf.Clamp(y, -30, 80);
         z = Mathf.Clamp(z, -95, 95);
 
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            print("蛋椅动了"+x);
+        }
         int result = Svc.SendMotionPercent(x, y, z);
 
 
@@ -99,7 +107,7 @@ public class ControlDanyi:MonoBehaviour
 
     }
 
-    void InitializePlayerSvc()
+    public void InitializePlayerSvc()
     {
         //刚刚开始游戏
         if (Svc == null)

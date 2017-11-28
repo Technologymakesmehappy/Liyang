@@ -92,7 +92,7 @@ public class EnemyBullet : Task
 		start_ = update_time;
 		length_ = length;
 		beam_id_ = Beam2.Instance.spawn(width, Beam2.Type.EnemyBullet);
-            Debug.Log("敌人发射子弹++++++++++++++++++++++++++++");
+
 	}
 
 	public override void destroy()
@@ -108,7 +108,7 @@ public class EnemyBullet : Task
         
 		if (MyCollider.getHitOpponentForEnemyBullet(collider_) != MyCollider.Type.None) {
 			Spark.Instance.spawn(ref rigidbody_.transform_.position_, Spark.Type.EnemyBullet, update_time);
-                Debug.Log("攻击到我了1");
+
                 //Temp 玩家被敌人攻击到了，攻击次数
                 AttackNumber++;
                 destroy();

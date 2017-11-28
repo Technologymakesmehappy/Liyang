@@ -31,11 +31,11 @@ public struct LightBall
 		}
 
 		beam_id_ = Beam.Instance.spawn(0.8f /* width */, Beam.Type.LightBall);
-            Debug.Log("发射子弹2");
+
             beam_id_list_ = new int[LIGHTBALL_MAX];
 		for (var i = 0; i < beam_id_list_.Length; ++i) {
 			beam_id_list_[i] = Beam.Instance.spawn(0.1f /* width */, Beam.Type.LightBall);
-                Debug.Log("发射子弹3");
+
             }
 	}
 

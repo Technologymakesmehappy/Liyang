@@ -11,17 +11,14 @@ public class RandomActiveSelfChilder : MonoBehaviour
     {
         StartIenumber();
     }
-	
 	void Update ()
     {
 		
 	}
-
     void StartIenumber()
     {
         StartCoroutine(ShowUI());
     }
-
     //用来显示高大上的UI
     IEnumerator ShowUI()
     {

@@ -17,13 +17,14 @@ public struct MyCollider
 	private static int pool_enemy_bullet_index_;
 
 
-       // public static System.Func<MyCollider[]> GetMyCollider;
-
+    public static System.Func<MyCollider[]> GetMyCollider;
+        public  static MyCollider[] collider;
 	public static void createPool()
 	{
+
             
 
-		player_.alive_ = false;
+        player_.alive_ = false;
 		player_.id_ = 0;
 		player_.type_ = Type.Player;
 
@@ -50,11 +51,14 @@ public struct MyCollider
 			pool_enemy_bullet_[i].type_ = Type.EnemyBullet;
 		}
 		pool_enemy_bullet_index_ = 0;
-	}
+
+       
+        }
 
 	private static void clear(ref MyCollider[] pool)
 	{
-		for (var i = 0; i < pool.Length; ++i) {
+         
+            for (var i = 0; i < pool.Length; ++i) {
 			pool[i].alive_ = false;
 			pool[i].disabled_ = false;
 			pool[i].id_ = 0;
@@ -213,9 +217,10 @@ public struct MyCollider
 				check_intersection(ref player_, ref pool_enemy_bullet_[i]);
 			}
 		}
-           
-		// enemy - bullet
-		for (var i = 0; i < pool_enemy_.Length; ++i) {
+            collider = pool_enemy_;
+
+        // enemy - bullet
+            for (var i = 0; i < pool_enemy_.Length; ++i) {
 			if (pool_enemy_[i].alive_ && !pool_enemy_[i].disabled_) {
 				for (var j = 0; j < pool_bullet_.Length; ++j) {
 					if (pool_bullet_[j].alive_) {
@@ -225,6 +230,7 @@ public struct MyCollider
 			}
 		}
 	}
+    
 
 	private static void check_intersection(ref MyCollider col0, ref MyCollider col1)
 	{

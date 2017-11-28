@@ -654,18 +654,25 @@ public class SystemManager : MonoBehaviour {
 
 	void Awake()
 	{
-		SystemManager.instance_ = this;
+
+            
+
+
+        SystemManager.instance_ = this;
 		initialize();
 		update_thread_ = new Thread(thread_entry);
 		update_thread_.Start();
-	}
-	
-	void Start()
+
+            
+        }
+
+        void Start()
 	{
 
             //游戏开始时，不用按键即可开始游戏，将按下1键开始游戏的条件关闭
             StartCoroutine(BeganGame());
 
+            //ControlDanyi._instance.InitializePlayerSvc();
 
             #region 在游戏刚刚开始的时候调用一次重置游戏的方法，避免飞机开始时的降落
             //在游戏刚刚开始的时候调用一次重置游戏的方法，避免飞机开始时的降落
@@ -810,7 +817,7 @@ public class SystemManager : MonoBehaviour {
             {
                 IsBegan = true;
                 IsBeganDanyi = true;
-                print("IsBeganIsBeganIsBeganIsBeganIsBeganIsBeganIsBegan" + IsBegan);
+                //print("IsBeganIsBeganIsBeganIsBeganIsBeganIsBeganIsBegan" + IsBegan);
             }
             #endregion
 
@@ -1204,11 +1211,14 @@ public class SystemManager : MonoBehaviour {
         // The Update
         void Update()
 	    {
+           
+         
+
             if (SystemManager.Instance.IsGameOverNewScene)
             {
                 print("游戏结束，回到选择关卡的界面");
                 print("游戏结束，回到选择关卡的界面");
-                
+                GameObject.Find("MainCamera").GetComponent<AudioListener>().enabled = false;
                 update_thread_.Abort();
                 SceneManager.LoadScene("ChooseLevel");
             }
@@ -1358,9 +1368,12 @@ public class SystemManager : MonoBehaviour {
             {
                 //更改相機模式
                 print("我要变黑了");
+
+
                 BecomeBlackTime += Time.deltaTime;
                 if (BecomeBlackTime>=4f)
-                { 
+                {
+                    Camera.main.GetComponent<Camera>().cullingMask = 0;
                     CameraBackage.gameObject.SetActive(true);
                     //Temp 
                     //GameObject.Find("player 1(Clone)").transform.FindChild("ShieldRenderer").gameObject.SetActive(false);

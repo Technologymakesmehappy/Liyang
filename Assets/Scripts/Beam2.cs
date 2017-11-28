@@ -130,7 +130,7 @@ public class Beam2
 
 	public int spawn(float width, Type type)
 	{
-            Debug.Log("敌人实例化子弹");
+
 		int cnt = 0;
 		while (alive_table_[spawn_index_]) {
 			++spawn_index_;

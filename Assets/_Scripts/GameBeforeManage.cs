@@ -24,6 +24,8 @@ public class GameBeforeManage : MonoBehaviour
     public GameObject LightFour;
 
 
+    public GameObject[] feijiUI;
+
     void Start ()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
@@ -32,6 +34,7 @@ public class GameBeforeManage : MonoBehaviour
         {
             StartCoroutine(PlayBackAudio());
         }
+        StartCoroutine(PlayFeijiUI());
     }
 	
 	void Update ()
@@ -112,5 +115,15 @@ public class GameBeforeManage : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("main");
+    }
+
+    IEnumerator PlayFeijiUI()
+    {
+        yield return new WaitForSeconds(1f);
+        feijiUI[0].gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        feijiUI[1].gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        feijiUI[2].gameObject.SetActive(true);
     }
 }

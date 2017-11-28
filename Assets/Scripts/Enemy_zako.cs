@@ -62,6 +62,7 @@ public partial class Enemy : Task
 			rigidbody_.addTorque(MyRandom.Range(-100f, 100f),
 								 MyRandom.Range(-100f, 100f),
 								 MyRandom.Range(-100f, 100f));
+                UnityEngine.Debug.Log("敌人被攻击到了");
 			life_ -= 20f;
 		}
 		if (lock_target_.isHitted()) {

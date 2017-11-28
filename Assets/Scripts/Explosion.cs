@@ -102,7 +102,7 @@ public class Explosion
         public bool IsShowScoreUI = false;
 	public void spawn(ref Vector3 pos, double update_time)
 	{
-            Debug.Log("調用了爆炸效果");
+
             //当调用爆炸效果时，敌机被打爆
             //在这里写分数的逻辑
             //优化敌机声音的效果

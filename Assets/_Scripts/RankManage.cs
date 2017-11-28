@@ -28,7 +28,10 @@ public class RankManage : MonoBehaviour
         yield return new WaitForSeconds(1f);
         RankSend._instance.SendScore(Explosion.Instance.PlayerAttackEnemyNumber);
         yield return new WaitForSeconds(1f);
-        //Time.timeScale = 0;
+
+        GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true);
+            
+
         //IsTimeScale = true;
     }
 

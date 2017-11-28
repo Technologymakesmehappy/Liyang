@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class ButtonFunc : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static bool TimeScale = false;
+
     public  void Init()
     {
-        Time.timeScale = 1;
+        print("调用Button里面的方法");
+        TimeScale = true;
     }
 }
+

@@ -10,7 +10,7 @@ public class Destroy : MonoBehaviour {
 	void Start ()
     {
      
-        Destroy(this.gameObject,0.5f);
+        Destroy(this.gameObject,0.4f);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +27,20 @@ public class Destroy : MonoBehaviour {
           
                 GameObject Ex = GameObject.Instantiate(Resources.Load<GameObject>("Ef_ExplosionThree"), other.gameObject.transform.position, other.gameObject.transform.rotation);
                 Destroy(Ex, 0.5f);
+
+
             
+            for (int i = 0; i < MyCollider.collider.Length; i++)
+            {
+                float distance = Vector3.Distance(MyCollider.collider[i].center_, this.transform.position);
+                if (distance < 6f)
+                {
+                   
+                    Vector3 bullet = this.transform.position;
+                    MyCollider.collider[i].opponent_info_.set(MyCollider.Type.Enemy, ref bullet);
+                }
 
-
+            }
 
 
             //AttackSucceedNumber = 0;

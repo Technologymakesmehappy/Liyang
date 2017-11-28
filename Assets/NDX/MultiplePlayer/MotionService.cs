@@ -347,8 +347,8 @@ using System.Threading;
         public int Stop()
         {
             stopped = true;
-            udp.Close();
-            udp = null;
+          //  udp.Close();
+            //udp = null;
             OnLog("Motion service stopped.");
             if (log != null)
             {
